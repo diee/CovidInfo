@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CovidInfo</string>
+    <string name="deaths_label">Deaths:</string>
+    <string name="cases_label">Cases:</string>
+    <string name="recovered_label">Recovered:</string>
+    <string name="total_cases_label">Total cases:</string>
+    <string name="new_cases_label">New Cases:</string>
+</resources>

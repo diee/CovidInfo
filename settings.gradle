@@ -1,0 +1,5 @@
+rootProject.name='CovidInfo'
+include ':app'
+include ':domain'
+include ':data'
+include ':usecases'
