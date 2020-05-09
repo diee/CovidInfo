@@ -41,7 +41,7 @@ fun CountryCasesEntity.toDomainCountryCases() =
     CountryCases(
         id,
         countryName,
-        cases,
+        cases.toString(),
         deaths,
         totalRecovered,
         newDeaths,
@@ -54,7 +54,7 @@ fun CountryCases.toCountryCasesEntity() =
     CountryCasesEntity(
         0,
         countryName,
-        cases,
+        cases.parseStringToInt(),
         deaths,
         totalRecovered,
         newDeaths,
@@ -62,3 +62,7 @@ fun CountryCases.toCountryCasesEntity() =
         activeCases,
         totalTests
     )
+
+fun String?.parseStringToInt(): Int {
+    return this?.replace(",", "")?.toInt() ?: 0
+}
