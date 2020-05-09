@@ -8,7 +8,7 @@ data class CountryCasesEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val countryName: String,
-    val cases: String? = null,
+    val cases: Int? = null,
     val deaths: String? = null,
     val totalRecovered: String? = null,
     val newDeaths: String? = null,

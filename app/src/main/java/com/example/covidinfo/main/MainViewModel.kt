@@ -27,10 +27,7 @@ class MainViewModel(private val getCountryCases: GetCountryCases) : ScopedViewMo
 
     fun getCountryCases() {
         launch {
-            _model.value =
-                UiModel.Content(
-                    getCountryCases.invoke()
-                )
+            _model.value = UiModel.Content(getCountryCases.invoke())
         }
     }
 
