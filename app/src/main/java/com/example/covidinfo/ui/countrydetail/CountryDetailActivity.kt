@@ -1,4 +1,4 @@
-package com.example.covidinfo.countrydetail
+package com.example.covidinfo.ui.countrydetail
 
 import android.os.Bundle
 import android.view.View
@@ -19,20 +19,16 @@ class CountryDetailActivity : AppCompatActivity() {
         const val COUNTRY_CASES = "CountryDetailActivity:countryCases"
     }
 
-    private lateinit var viewModel: CountryDetailViewModel
+    private lateinit var component: CountryDetailActivityComponent
+    private val viewModel by lazy { getViewModel { component.countryDetailViewModel } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_detail)
 
-        viewModel = getViewModel {
-            val repository = CovidInfoRepository(CovidInfoDataSource(), RoomDataSource(app.db))
+        component = app.component
+            .plus(CountryDetailActivityModule(intent.getStringExtra(COUNTRY_CASES) ?: ""))
 
-            CountryDetailViewModel(
-                intent.getStringExtra(COUNTRY_CASES) ?: "",
-                GetCountryDetailsByName(repository)
-            )
-        }
         viewModel.model.observe(this, Observer(::updateUi))
 
         btnBack?.setOnClickListener { finish() }
