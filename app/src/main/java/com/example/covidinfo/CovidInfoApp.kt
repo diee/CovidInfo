@@ -1,20 +1,19 @@
 package com.example.covidinfo
 
 import android.app.Application
-import androidx.room.Room
-import com.example.covidinfo.data.database.CovidInfoDataBase
+import com.example.covidinfo.di.CovidInfoComponent
+import com.example.covidinfo.di.DaggerCovidInfoComponent
 
 class CovidInfoApp : Application() {
 
-    lateinit var db: CovidInfoDataBase
+    lateinit var component: CovidInfoComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
 
-        db = Room.databaseBuilder(
-            this,
-            CovidInfoDataBase::class.java, "covidinfo-db"
-        ).build()
+        component = DaggerCovidInfoComponent
+            .factory()
+            .create(this)
     }
 }

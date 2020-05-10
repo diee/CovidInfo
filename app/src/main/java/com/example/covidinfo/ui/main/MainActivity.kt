@@ -1,8 +1,6 @@
-package com.example.covidinfo.main
+package com.example.covidinfo.ui.main
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -11,10 +9,10 @@ import com.example.covidinfo.R
 import com.example.covidinfo.common.app
 import com.example.covidinfo.common.getViewModel
 import com.example.covidinfo.common.startActivity
-import com.example.covidinfo.countrydetail.CountryDetailActivity
+import com.example.covidinfo.ui.countrydetail.CountryDetailActivity
 import com.example.covidinfo.data.database.RoomDataSource
 import com.example.covidinfo.data.server.CovidInfoDataSource
-import com.example.covidinfo.main.MainViewModel.UiModel
+import com.example.covidinfo.ui.main.MainViewModel.UiModel
 import com.example.data.repository.CovidInfoRepository
 import com.example.domain.CountryCases
 import com.example.usecases.GetCountryCases
@@ -23,7 +21,9 @@ import kotlinx.android.synthetic.main.country_more_cases_component.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var component: MainActivityComponent
+    private val viewModel: MainViewModel by lazy { getViewModel { component.mainViewModel } }
+
     private lateinit var adapter: CountryCasesAdapter
     private lateinit var moreCasesAdapter: CountryMoreCasesAdapter
 
@@ -31,11 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = getViewModel {
-            MainViewModel(
-                GetCountryCases(CovidInfoRepository(CovidInfoDataSource(), RoomDataSource(app.db)))
-            )
-        }
+        component = app.component.plus(MainActivityModule())
 
         adapter = CountryCasesAdapter(viewModel::onCountryCasesClicked)
         rvCountryCases.adapter = adapter

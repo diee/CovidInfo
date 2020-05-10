@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".countrydetail.CountryDetailActivity"
+        <activity android:name="com.example.covidinfo.ui.countrydetail.CountryDetailActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".main.MainActivity">
+        <activity android:name="com.example.covidinfo.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

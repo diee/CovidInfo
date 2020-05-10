@@ -1,4 +1,4 @@
-package com.example.covidinfo.main
+package com.example.covidinfo.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
