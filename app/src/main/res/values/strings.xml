@@ -4,5 +4,10 @@
     <string name="cases_label">Cases:</string>
     <string name="recovered_label">Recovered:</string>
     <string name="total_cases_label">Total cases:</string>
-    <string name="new_cases_label">New Cases:</string>
+    <string name="new_cases_label">New cases:</string>
+    <string name="country_cases_label">Country Cases</string>
+    <string name="total_deaths_label">Total deaths:</string>
+    <string name="total_tests_label">Total tests:</string>
+    <string name="total_recovered_label">Total recovered:</string>
+    <string name="active_cases_label">Active cases:</string>
 </resources>
