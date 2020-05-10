@@ -23,7 +23,7 @@
             android:id="@+id/etSearchCountryCases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search country"
+            app:queryHint="Search country"
             app:iconifiedByDefault="false" />
 
     </androidx.cardview.widget.CardView>
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Country Cases"
+        android:text="@string/country_cases_label"
         android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="invisible"

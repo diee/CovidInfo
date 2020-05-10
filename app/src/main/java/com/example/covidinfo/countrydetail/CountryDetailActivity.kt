@@ -34,6 +34,8 @@ class CountryDetailActivity : AppCompatActivity() {
             )
         }
         viewModel.model.observe(this, Observer(::updateUi))
+
+        btnBack?.setOnClickListener { finish() }
     }
 
     private fun updateUi(model: CountryDetailViewModel.UiModel) {
@@ -43,9 +45,13 @@ class CountryDetailActivity : AppCompatActivity() {
         when (model) {
             is CountryDetailViewModel.UiModel.Content -> {
                 with(model.countryDetails) {
-                    supportActionBar?.title = countryName
+                    tvCountryName?.text = countryName
                     tvTotalCasesValue.text = cases
                     tvNewCasesValue.text = newCases
+                    tvActiveCasesValue.text = activeCases
+                    tvTotalRecoveredValue.text = totalRecovered
+                    tvTotalTestsValue.text = totalTests
+                    tvTotalDeathsValue.text = deaths
                 }
             }
         }
