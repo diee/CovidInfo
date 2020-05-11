@@ -1,2 +1,7 @@
 # CovidInfo
-test
+### Clean architecture training project
+
+
+Preview
+
+![](covid-info.gif)
