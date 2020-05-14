@@ -18,11 +18,12 @@ import com.example.domain.CountryCases
 import com.example.usecases.GetCountryCases
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.country_more_cases_component.*
+import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.scope.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var component: MainActivityComponent
-    private val viewModel: MainViewModel by lazy { getViewModel { component.mainViewModel } }
+    private val viewModel: MainViewModel by lifecycleScope.viewModel(this)
 
     private lateinit var adapter: CountryCasesAdapter
     private lateinit var moreCasesAdapter: CountryMoreCasesAdapter
@@ -30,8 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        component = app.component.plus(MainActivityModule())
 
         adapter = CountryCasesAdapter(viewModel::onCountryCasesClicked)
         rvCountryCases.adapter = adapter

@@ -12,6 +12,9 @@ import com.example.covidinfo.data.server.CovidInfoDataSource
 import com.example.data.repository.CovidInfoRepository
 import com.example.usecases.GetCountryDetailsByName
 import kotlinx.android.synthetic.main.activity_country_detail.*
+import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.core.parameter.parametersOf
 
 class CountryDetailActivity : AppCompatActivity() {
 
@@ -19,15 +22,13 @@ class CountryDetailActivity : AppCompatActivity() {
         const val COUNTRY_CASES = "CountryDetailActivity:countryCases"
     }
 
-    private lateinit var component: CountryDetailActivityComponent
-    private val viewModel by lazy { getViewModel { component.countryDetailViewModel } }
+    private val viewModel: CountryDetailViewModel by lifecycleScope.viewModel(this) {
+        parametersOf(intent.getStringExtra(COUNTRY_CASES))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_detail)
-
-        component = app.component
-            .plus(CountryDetailActivityModule(intent.getStringExtra(COUNTRY_CASES) ?: ""))
 
         viewModel.model.observe(this, Observer(::updateUi))
 
