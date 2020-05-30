@@ -13,6 +13,8 @@ import com.example.data.source.LocalDataSource
 import com.example.data.source.RemoteDataSource
 import com.example.usecases.GetCountryCases
 import com.example.usecases.GetCountryDetailsByName
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -32,6 +34,7 @@ val appModule = module {
     single { CovidInfoDataBase.build(get()) }
     factory<LocalDataSource> { RoomDataSource(get()) }
     factory<RemoteDataSource> { CovidInfoDataSource() }
+    single<CoroutineDispatcher> { Dispatchers.Main }
 
 }
 
@@ -41,12 +44,12 @@ val dataModule = module {
 
 val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel(get(), get()) }
         scoped { GetCountryCases(get()) }
     }
 
     scope(named<CountryDetailActivity>()) {
-        viewModel { (country: String) -> CountryDetailViewModel(country, get()) }
+        viewModel { (country: String) -> CountryDetailViewModel(country, get(), get()) }
         scoped { GetCountryDetailsByName(get()) }
     }
 }

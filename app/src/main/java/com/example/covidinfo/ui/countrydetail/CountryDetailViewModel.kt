@@ -5,16 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import com.example.covidinfo.common.ScopedViewModel
 import com.example.domain.CountryDetails
 import com.example.usecases.GetCountryDetailsByName
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class CountryDetailViewModel(
     private val countryName: String,
-    private val getCountryDetailsByName: GetCountryDetailsByName
-) : ScopedViewModel() {
+    private val getCountryDetailsByName: GetCountryDetailsByName,
+    uiDispatcher: CoroutineDispatcher
+) : ScopedViewModel(uiDispatcher) {
 
-    sealed class UiModel() {
+    sealed class UiModel {
         object Loading : UiModel()
-        class Content(val countryDetails: CountryDetails) : UiModel()
+        data class Content(val countryDetails: CountryDetails) : UiModel()
     }
 
     private val _model = MutableLiveData<UiModel>()
