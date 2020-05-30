@@ -5,6 +5,8 @@ import com.example.data.source.LocalDataSource
 import com.example.data.source.RemoteDataSource
 import com.example.domain.CountryCases
 import com.example.domain.CountryDetails
+import com.example.testshared.mockedCountryCases
+import com.example.testshared.mockedCountryDetails
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -72,28 +74,4 @@ class CovidInfoRepositoryTest {
             Assert.assertEquals(countryDetails, result)
         }
     }
-
-    private val mockedCountryCases = CountryCases(
-        0,
-        "Argentina",
-        "4360",
-        "366",
-        "1200",
-        "2",
-        "3",
-        "800",
-        "5000"
-    )
-
-    private val mockedCountryDetails = CountryDetails(
-        0,
-        "Argentina",
-        "4360",
-        "366",
-        "1200",
-        "2",
-        "3",
-        "800",
-        "5000"
-    )
 }

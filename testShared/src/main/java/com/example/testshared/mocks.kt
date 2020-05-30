@@ -1,10 +1,9 @@
-package com.example.usecases
+package com.example.testshared
 
 import com.example.domain.CountryCases
 import com.example.domain.CountryDetails
 
-
-internal val mockedCountryCases = CountryCases(
+val mockedCountryCases = CountryCases(
     0,
     "Argentina",
     "4360",
@@ -16,7 +15,7 @@ internal val mockedCountryCases = CountryCases(
     "5000"
 )
 
-internal val mockedCountryDetails = CountryDetails(
+val mockedCountryDetails = CountryDetails(
     0,
     "Argentina",
     "4360",

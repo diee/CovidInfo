@@ -1,6 +1,7 @@
 package com.example.usecases
 
 import com.example.data.repository.CovidInfoRepository
+import com.example.testshared.mockedCountryCases
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
