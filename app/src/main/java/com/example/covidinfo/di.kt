@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.covidinfo.data.database.CovidInfoDataBase
 import com.example.covidinfo.data.database.RoomDataSource
 import com.example.covidinfo.data.server.CovidInfoDataSource
+import com.example.covidinfo.data.server.CovidInfoNetwork
 import com.example.covidinfo.ui.countrydetail.CountryDetailActivity
 import com.example.covidinfo.ui.countrydetail.CountryDetailViewModel
 import com.example.covidinfo.ui.main.MainActivity
@@ -33,8 +34,10 @@ fun Application.initDI() {
 val appModule = module {
     single { CovidInfoDataBase.build(get()) }
     factory<LocalDataSource> { RoomDataSource(get()) }
-    factory<RemoteDataSource> { CovidInfoDataSource() }
+    factory<RemoteDataSource> { CovidInfoDataSource(get()) }
     single<CoroutineDispatcher> { Dispatchers.Main }
+    single(named("baseUrl")) { "https://coronavirus-monitor.p.rapidapi.com/coronavirus/" }
+    single { CovidInfoNetwork(get(named("baseUrl"))) }
 
 }
 
